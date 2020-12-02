@@ -6,13 +6,9 @@ vector<int> expenses;
 int main() {
     int expense;
 
-    printf("Waiting for input:\n");
-
-    while (scanf("%d", &expense) && expense != 0) {
+    while (scanf("%d", &expense) != EOF) {
         expenses.push_back(expense);
     }
-
-    printf("Finished reading input!\n");
 
     for (int i = 0; i < expenses.size(); i++) {
         for (int j = i + 1; j < expenses.size(); j++) {
