@@ -73,28 +73,28 @@ int main() {
 	while (scanf("%s", seats[num_of_seats]) != EOF) {
 		num_of_seats++;
 	}
-    
-    seat_ids = malloc(sizeof(int) * num_of_seats);
-    smallest_seat_id = 1100;
+
+	seat_ids = malloc(sizeof(int) * num_of_seats);
+	smallest_seat_id = 1100;
 
 	for (int i = 0; i < num_of_seats; i++) {
 		seat_ids[i] = calculate_seat_id(seats[i]);
 		biggest_seat_id = max(biggest_seat_id, seat_ids[i]);
-        smallest_seat_id = min(smallest_seat_id, seat_ids[i]);
+	        smallest_seat_id = min(smallest_seat_id, seat_ids[i]);
 	}
 
-    seat_is_taken = calloc(biggest_seat_id + 1, sizeof(int));
+	seat_is_taken = calloc(biggest_seat_id + 1, sizeof(int));
 
-    for (int i = 0; i < num_of_seats; i++) {
-        int seat_id = seat_ids[i];
-        seat_is_taken[seat_id] = 1;    
-    }
+	for (int i = 0; i < num_of_seats; i++) {
+		int seat_id = seat_ids[i];
+	        seat_is_taken[seat_id] = 1;
+	}
 
-    for (int i = smallest_seat_id; i <= biggest_seat_id; i++) {
-        if (!seat_is_taken[i]) {
-            printf("Seat %d is not taken\n", i);        
-        }    
-    }
+	for (int i = smallest_seat_id; i <= biggest_seat_id; i++) {
+		if (!seat_is_taken[i]) {
+			printf("Seat %d is not taken\n", i)
+        	}
+	}
 
 	return 0;
 }
