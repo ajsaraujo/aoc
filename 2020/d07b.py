@@ -39,25 +39,19 @@ def read_bags(file_content):
 
 file_name = sys.argv[1]
 
-def reaches_gold(bags, bag_name):
+def count_how_many_bags(bags, bag_name):
 	bag = bags[bag_name]
-	
-	if 'shiny gold' in bag:
-		return True
-	
-	for other_bag in bag:
-		if reaches_gold(bags, other_bag):
-			return True
-	
-	return False
+
+	sum = 1
+
+	for inner_bag, quantity in bag.items():
+		sum += quantity * count_how_many_bags(bags, inner_bag)
+
+	print(f'{bag_name} = {sum}')
+	return sum
 
 with open(file_name, 'r') as file:
 	file_content = file.readlines()
 	bags = read_bags(file_content)
-	
-	count = 0
-	for bag_name in bags:
-		if reaches_gold(bags, bag_name):
-			count += 1
 
-	print(count)
+	print(count_how_many_bags(bags, 'shiny gold'))
